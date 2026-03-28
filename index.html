@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kırık Tespit</title>
+    <style>
+        body { font-family: Arial; background:#eef2f3; text-align:center; }
+        .box { background:white; padding:20px; margin:20px; border-radius:12px; }
+        img { width:300px; margin:10px; border-radius:10px; }
+        button { padding:10px 20px; margin:10px; cursor:pointer; }
+    </style>
+</head>
+
+<body>
+
+<h1>🦴 X-Ray Kırık Tespit</h1>
+
+<div class="box">
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button>Tahmin Et</button>
+</form>
+
+{% if result %}
+<h2>{{ result }}</h2>
+<h3>Güven: %{{ confidence }}</h3>
+<img src="/static/{{ img_path }}">
+{% endif %}
+</div>
+
+<div class="box">
+<h2>📊 Grafikler</h2>
+
+<!-- Grafik yoksa kırılmaz -->
+<img src="/static/accuracy.png" onerror="this.style.display='none'">
+<img src="/static/loss.png" onerror="this.style.display='none'">
+<img src="/static/confusion_matrix.png" onerror="this.style.display='none'">
+
+</div>
+
+<a href="/code">
+    <button>📄 Kodları Gör</button>
+</a>
+
+</body>
+</html>
